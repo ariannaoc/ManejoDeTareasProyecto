@@ -26,7 +26,7 @@ const TASK_TYPE = {
 
 const Tareas = () => {
     const params = useParams();
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { tasks, setTasks, apiHost } = useContext(TaskContext);
     const [selected, setSelected] = useState(0);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -37,7 +37,7 @@ const Tareas = () => {
             const fetchTasks = async () => {
                 
                 try {
-                    const response = await fetch('https://localhost:7009/api/Tareas', {
+                    const response = await fetch(`${apiHost}/api/Tareas`, {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const Tareas = () => {
             };
 
             fetchTasks();
-        }, [setTasks, status]);
+        }, [setTasks, status, apiHost]);
 
     return loading ? (
         <div className='py-10'>

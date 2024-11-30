@@ -1,24 +1,23 @@
+import clsx from "clsx";
+import moment from "moment";
+import { useEffect, useState, useContext } from "react";
 import { FaBug, FaTasks, FaThumbsUp, FaUser } from "react-icons/fa";
 import { GrInProgress } from "react-icons/gr";
 import {
-  MdKeyboardArrowDown,
-  MdKeyboardArrowUp,
-  MdKeyboardDoubleArrowUp,
-  MdOutlineDoneAll,
-  MdOutlineMessage,
-  MdTaskAlt,
+    MdKeyboardArrowDown,
+    MdKeyboardArrowUp,
+    MdKeyboardDoubleArrowUp,
+    MdOutlineDoneAll,
+    MdOutlineMessage,
+    MdTaskAlt,
 } from "react-icons/md";
 import { RxActivityLog } from "react-icons/rx";
 import { useParams } from "react-router-dom";
-import { toast } from "sonner";
-import { tasks } from "../assets/data.js"; 
 import Loading from "../componentes/Carga";
-import Button from "../componentes/button";
 import Tabs from "../componentes/Tabs";
-import { getInitials, PRIORITY_STYLES, TASK_TYPE } from "../utilidades";
-import clsx from "clsx";
-import moment from "moment";
-import { useState } from "react";
+import Button from "../componentes/button";
+import { PRIORITY_STYLES, TASK_TYPE, getInitials } from "../utilidades";
+import { TaskContext } from '../contexts/TaskContext.jsx'
 
 const assets = [
   "https://images.pexels.com/photos/2418664/pexels-photo-2418664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -86,11 +85,45 @@ const act_types = [
   "Asignado",
 ];
 
-const DetallesTarea = () => {
-  const { id } = useParams();
 
-  const [selected, setSelected] = useState(0); //para determinar cual es el tab que esta siendo seleccionado
-  const task = tasks[3];
+const DetallesTarea = () => {
+    const { apiHost } = useContext(TaskContext);
+    const { id } = useParams();
+    const [selected, setSelected] = useState(0); // para determinar cuál es el tab que está siendo seleccionado
+    const [task, setTask] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTask = async () => {
+            try {
+                const response = await fetch(`${apiHost}/api/Tareas/filter?IdTarea=${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                console.log(data)
+
+                const taskData = Array.isArray(data) ? data[0] : data; // Depuración: Verifica los datos de la tarea a establecer 
+                console.log('Datos de la tarea:', taskData);
+                setTask(taskData);
+                console.log("estado:"+ task)
+            } catch (error) {
+                console.error('Error fetching task:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTask();
+    }, [id, apiHost]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (!task) {
+        return <div>Tarea no encontrada</div>;
+    }
 
   return (
     <div className='w-full flex flex-col gap-3 mb-4 overflow-y-hidden'>

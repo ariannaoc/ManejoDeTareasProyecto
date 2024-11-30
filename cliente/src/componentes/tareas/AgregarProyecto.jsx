@@ -29,7 +29,7 @@ const AgregarProyecto = ({ open, setOpen }) => {
     );
     const [assets, setAssets] = useState([]);
     const [uploading, setUploading] = useState(false);
-    const { setTasks } = useContext(TaskContext);
+    const { setTasks, apiHost } = useContext(TaskContext);
 
     const submitHandler = async (data) => {
         // Verifica y asigna títulos por defecto si es necesario
@@ -56,7 +56,7 @@ const AgregarProyecto = ({ open, setOpen }) => {
         console.log('Datos del proyecto:', newProject); // Verifica los datos del proyecto
 
         try {
-            const response = await fetch('https://localhost:7009/api/Tareas', {
+            const response = await fetch(`${apiHost}/api/Tareas`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

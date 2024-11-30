@@ -10,12 +10,19 @@ const ListaUsuarios = ({ setTeam, team }) => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const handleChange = (selectedUsers) => {
-        setSelectedUsers(selectedUsers);
-        setTeam(selectedUsers);
+    const toggleUserSelection = (user) => {
+        const isSelected = selectedUsers.some(u => u._id === user._id);
+        let updatedSelection;
 
-        // Agrega un log para depurar los datos del usuario seleccionado
-        console.log('Usuarios seleccionados:', selectedUsers);
+        if (isSelected) {
+            updatedSelection = selectedUsers.filter(u => u._id !== user._id);
+        } else {
+            updatedSelection = [...selectedUsers, user];
+        }
+
+        setSelectedUsers(updatedSelection);
+        setTeam(updatedSelection);
+        console.log('Usuarios seleccionados:', updatedSelection);
     };
 
     useEffect(() => {
@@ -33,6 +40,7 @@ const ListaUsuarios = ({ setTeam, team }) => {
                 }
 
                 const data = await response.json();
+                console.log('Usuarios obtenidos:', data);
                 setUsers(data);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -55,7 +63,7 @@ const ListaUsuarios = ({ setTeam, team }) => {
             <p className='text-gray-700'>Asignar Proyecto: </p>
             <Listbox
                 value={selectedUsers}
-                onChange={handleChange}
+                onChange={() => { }}
                 multiple
             >
                 <div className='relative mt-1'>
@@ -70,7 +78,7 @@ const ListaUsuarios = ({ setTeam, team }) => {
                     <Transition as={Fragment} leave='transition ease-in duration-100' leaveFrom='opacity-100' leaveTo='opacity-0'>
                         <Listbox.Options className='z-50 absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm'>
                             {users?.map((user, index) => (
-                                <Listbox.Option key={index} className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-amber-100 text-amber-900" : "text-gray-900"}`} value={user}>
+                                <Listbox.Option key={index} className={({ active }) => `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? "bg-amber-100 text-amber-900" : "text-gray-900"}`} value={user} onClick={() => toggleUserSelection(user)}>
                                     {({ selected }) => (
                                         <>
                                             <div className={clsx("flex items-center gap-2 truncate", selected ? "font-medium" : "font-normal")}>
