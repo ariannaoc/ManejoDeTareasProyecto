@@ -30,14 +30,12 @@ const Tareas = () => {
     const [selected, setSelected] = useState(0);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
-    //const [tasks, setTasks] = useState([]);
 
     const status = params?.status || "";
 
-
-
         useEffect(() => {
             const fetchTasks = async () => {
+                
                 try {
                     const response = await fetch('https://localhost:7009/api/Tareas', {
                         method: 'GET',
@@ -67,7 +65,24 @@ const Tareas = () => {
                         __v: task.__v
                     }));
 
-                    setTasks(transformedData);
+                    // Filtrar tareas segun status
+                    let filteredTasks;
+                    switch (status.toLowerCase()) {
+                        case 'completados':
+                            filteredTasks = transformedData.filter(task => task.stage.toLowerCase() === 'completado');
+                            break;
+                        case 'por hacer':
+                            filteredTasks = transformedData.filter(task => task.stage.toLowerCase() === 'por hacer');
+                            break;
+                        case 'en progreso':
+                            filteredTasks = transformedData.filter(task => task.stage.toLowerCase() === 'en progreso');
+                            break;
+                        default:
+                            filteredTasks = transformedData;
+                            break;
+                    }
+
+                    setTasks(filteredTasks);
                 } catch (error) {
                     console.error('Error fetching tasks:', error);
                 } finally {
@@ -76,7 +91,7 @@ const Tareas = () => {
             };
 
             fetchTasks();
-        }, [setTasks]);
+        }, [setTasks, status]);
 
     return loading ? (
         <div className='py-10'>
