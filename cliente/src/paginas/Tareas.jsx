@@ -26,7 +26,7 @@ const TASK_TYPE = {
 
 const Tareas = () => {
     const params = useParams();
-    const { tasks, setTasks, apiHost } = useContext(TaskContext);
+    const { tasks, setTasks, apiHost, setAction } = useContext(TaskContext);
     const [selected, setSelected] = useState(0);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -106,7 +106,11 @@ const Tareas = () => {
                     !status && (
                         <Button
                             label="Crear Proyecto +"
-                            onClick={() => setOpen(true)}
+                                onClick={() => {
+                                    setOpen(true)
+                                    setAction("agregar")
+                                }
+                                }
                             className="flex flex-row-reverse gap-1 items-center bg-green-600 text-white rounded-lg py-2 2xl:py-2.5"
                         />)
                 }

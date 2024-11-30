@@ -20,7 +20,7 @@ const ICONS = {
 const Table = ({ task }) => {
     const [openDialog, setOpenDialog] = useState(false);
     //const [selected, setSelected] = useState(null);
-    const { tasks, setTasks, apiHost } = useContext(TaskContext);
+    const { tasks, setTasks, apiHost, setAction } = useContext(TaskContext);
     const [openEdit, setOpenEdit] = useState(false);
     const [selectedTask, setSelectedTask] = useState(null);
 
@@ -154,7 +154,11 @@ const Table = ({ task }) => {
                         label='Editar'
                         icon={<MdEdit className="inline" />}
                         type='button'
-                        onClick={() => editHandler(task._id)}
+                        onClick={() => {
+                            editHandler(task._id)
+                            setAction("editar")
+                        }
+                        }
                     />
 
 

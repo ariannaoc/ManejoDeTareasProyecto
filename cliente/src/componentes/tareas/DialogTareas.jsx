@@ -14,7 +14,7 @@ const DialogTareas = ({ task }) => {
     const [openDialog, setOpenDialog] = useState(false);
 
     const navigate = useNavigate();
-    const { tasks, setTasks } = useContext(TaskContext); 
+    const { tasks, setTasks, setAction } = useContext(TaskContext); 
 
     const deleteHandler = async (taskId) => {
         try {
@@ -47,7 +47,11 @@ const DialogTareas = ({ task }) => {
         {
             label: "Editar",
             icon: <MdOutlineEdit className='mr-2 h-5 w-5' aria-hidden='true' />,
-            onClick: () => setOpenEdit(true),
+            onClick: () => {
+                setOpenEdit(true)
+                    setAction("editar")
+            }
+            ,
         },
         {
             label: "Agregar Tarea",

@@ -20,7 +20,8 @@ function Layout() {
   const { user } = useSelector((state) => state.auth);
   const location = useLocation();
   
-  // Display the login page if no user is found
+    // Display the login page if no user is found
+
   if (!user) {
     return <Navigate to="/log-in" state={{ from: location }} replace />;
   }
@@ -98,7 +99,7 @@ function App() {
       <Routes>
         <Route path='/log-in' element={<Login />} />
         <Route element={<Layout />}>
-          <Route path='/' element={<Navigate to='/dashboard' />} />
+          <Route path='/' element={<Navigate to='/log-in' />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/tareas' element={<Tareas />} />
           <Route path='/completados/:status' element={<Tareas />} />
