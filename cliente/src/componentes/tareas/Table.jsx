@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import { BiMessageAltDetail, BiSolidMessageAltDetail } from "react-icons/bi";
-import UserInfo from "../UserInfo";
-import { FaList } from "react-icons/fa";
 import clsx from "clsx";
-import { BGS, formatDate, PRIORITY_STYLES, TASK_TYPE } from "../../utilidades";
-import { MdDelete, MdEdit, MdKeyboardArrowDown, MdKeyboardArrowUp, MdKeyboardDoubleArrowUp, MdOutlineAttachFile } from "react-icons/md";
-import Button from "../button";
+import React, { useState, useContext } from "react";
+import { BiSolidMessageAltDetail } from "react-icons/bi";
+import { FaList } from "react-icons/fa";
 import { FcHighPriority, FcLowPriority, FcMediumPriority } from "react-icons/fc";
+import { MdDelete, MdEdit, MdOutlineAttachFile } from "react-icons/md";
+import { BGS, PRIORITY_STYLES, TASK_TYPE, formatDate } from "../../utilidades";
+import UserInfo from "../UserInfo";
+import Button from "../button";
+import { TaskContext } from '../../contexts/TaskContext';
 
 const ICONS = {
   alta: <FcHighPriority />,
@@ -14,9 +15,10 @@ const ICONS = {
   baja: <FcLowPriority/>,
 };
 
-const Table = ({ tasks }) => {
+const Table = ({ task }) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState(null);
+    const { tasks, setTasks } = useContext(TaskContext); 
 
   const deleteClicks = (id) => {
     setSelected(id);
@@ -35,9 +37,9 @@ const Table = ({ tasks }) => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
-            console.log( taskId, ' Eliminado');
-            // Aquí puedes actualizar el estado de tareas si es necesario, para reflejar la eliminación en la interfaz
+            console.log(taskId, ' Eliminado');
+            // Actualizacion del estado global de tareas
+            setTasks(prevTasks => prevTasks.filter(task => task._id !== taskId));
         } catch (error) {
             console.error('Error:', error);
         }

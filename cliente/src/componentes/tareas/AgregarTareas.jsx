@@ -5,6 +5,7 @@ import { DialogTitle } from "@headlessui/react";
 import TextBox from "../TextBox";
 
 
+
 const AgregarTarea = ({ open, setOpen, id }) => {
   const {
     register,

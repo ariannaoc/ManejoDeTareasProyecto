@@ -1,22 +1,20 @@
-import { Fragment, useState, useContext } from "react";
+import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
+import { Fragment, useContext, useState } from "react";
 import { AiTwotoneFolderOpen } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
-import { HiDuplicate } from "react-icons/hi";
 import { MdAdd, MdDelete, MdOutlineEdit } from "react-icons/md";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
-import AgregarProyecto from "./AgregarProyecto"; //tarea
-import AgregarTarea from "./AgregarTareas"; //subtarea
-import { TaskContext } from '../../contexts/TaskContext'
+import { TaskContext } from '../../contexts/TaskContext';
+import AgregarProyecto from "./AgregarProyecto";
+import AgregarTarea from "./AgregarTareas";
 
-const DialogTareas = ({ task }) => {  // Asegúrate de recibir la tarea como prop
+const DialogTareas = ({ task }) => {  
     const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [openDialog, setOpenDialog] = useState(false);
 
     const navigate = useNavigate();
-    const { tasks, setTasks } = useContext(TaskContext); // Utiliza el contexto
+    const { tasks, setTasks } = useContext(TaskContext); 
 
     const deleteHandler = async (taskId) => {
         try {
@@ -33,7 +31,7 @@ const DialogTareas = ({ task }) => {  // Asegúrate de recibir la tarea como prop
 
             console.log(taskId, ' Eliminado');
 
-            // Actualiza el estado global de tareas
+            // Actualizacion del estado global de tareas
             setTasks(prevTasks => prevTasks.filter(task => task._id !== taskId));
         } catch (error) {
             console.error('Error:', error);
@@ -93,6 +91,7 @@ const DialogTareas = ({ task }) => {  // Asegúrate de recibir la tarea como prop
                                 ))}
                             </div>
 
+                            {/* ELIMINAR*/}
                             <div className='px-1 py-1'>
                                 <MenuItem>
                                     {({ focus }) => (

@@ -113,7 +113,7 @@ const Tareas = () => {
                     selected !== 1 ? (<VistaTablero tasks={tasks} />) :
                         (
                             <div className='w-full'>
-                                <Table tasks={tasks} />
+                                <Table task={tasks} />
                             </div>
                         )
                 }
