@@ -9,7 +9,6 @@ import ListaUsuarios from "./ListaUsuarios";
 import SelectList from "./SelectList";
 import { TaskContext } from '../../contexts/TaskContext';
 
-
 const LISTS = ["Por Hacer", "En Progreso", "Completado"];
 const PRIORIRY = ["Alta", "Media", "Baja"];
 
@@ -30,9 +29,15 @@ const AgregarProyecto = ({ open, setOpen }) => {
     );
     const [assets, setAssets] = useState([]);
     const [uploading, setUploading] = useState(false);
-    const { tasks, setTasks } = useContext(TaskContext);
+    const { setTasks } = useContext(TaskContext);
 
     const submitHandler = async (data) => {
+        // Verifica y asigna títulos por defecto si es necesario
+        const validTeam = team.map(user => ({
+            ...user,
+            title: user.title || 'Sin Título' // Asigna un valor por defecto si el título está ausente
+        }));
+
         const newProject = {
             _id: Date.now().toString(),
             title: data.title,
@@ -40,13 +45,15 @@ const AgregarProyecto = ({ open, setOpen }) => {
             priority: priority,
             stage: stage,
             assets: assets,
-            team: team,
+            team: validTeam,
             isTrashed: false,
             activities: [],
             subTasks: [],
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
+
+        console.log('Datos del proyecto:', newProject); // Verifica los datos del proyecto
 
         try {
             const response = await fetch('https://localhost:7009/api/Tareas', {
@@ -58,21 +65,21 @@ const AgregarProyecto = ({ open, setOpen }) => {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorText = await response.text();
+                throw new Error(`Network response was not ok: ${errorText}`);
             }
 
-            // Verifica si la respuesta tiene un cuerpo
             const responseData = await response.text();
             const jsonData = responseData ? JSON.parse(responseData) : {};
 
             console.log('Proyecto agregado:', jsonData);
-            // Actualización del estado global de tareas
             setTasks(prevTasks => [...prevTasks, newProject]);
             setOpen(false);
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
 
 
     const handleSelect = (e) => {
@@ -102,7 +109,7 @@ const AgregarProyecto = ({ open, setOpen }) => {
                             error={errors.title ? errors.title.message : ""}
                         />
 
-                        <ListaUsuarios setTeam={setTeam} team={team} /> {/* en el form, en Asignar tarea: se ve Usuario, esto esta en data.js, hay que cambiarlo para que sea simplemente un default */}
+                        <ListaUsuarios setTeam={setTeam} team={team} />
 
                         <div className='flex gap-4'>
                             <SelectList
@@ -116,7 +123,7 @@ const AgregarProyecto = ({ open, setOpen }) => {
                                 <Textbox
                                     placeholder='Date (dd/mm/yyyy)'
                                     type='date'
-                                    name='date' // tengo que arreglar la fecha porque no se puede en formato normal
+                                    name='date'
                                     label='Fecha del Proyecto'
                                     className='w-full rounded-xl'
                                     register={register("date", {
