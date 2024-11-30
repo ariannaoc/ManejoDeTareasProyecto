@@ -164,8 +164,11 @@ const DetallesTarea = () => {
 
                 <div className='flex items-center gap-8 p-4 border-y border-gray-200'>
                   <div className='space-x-2'>
-                    <span className='font-semibold'>Recursos :</span>
-                    <span>{task?.assets?.length}</span>
+                                      <span className='font-semibold'>Recursos :</span>
+                                      {task?.assets?.length <0 ?
+                                          <span>{task?.assets?.length}</span>
+                    : <p> No hay recursos cargados</p>
+                                      }
                   </div>
 
                   <span className='text-gray-400'>|</span>

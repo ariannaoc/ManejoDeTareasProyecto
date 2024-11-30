@@ -22,6 +22,10 @@ const ICONS = {
     alta: <FcHighPriority />,
     media: <FcMediumPriority />,
     baja: <FcLowPriority />,
+    Alta: <FcHighPriority />,
+    Media: <FcMediumPriority />,
+    Baja: <FcLowPriority />,
+   
   };
 
 

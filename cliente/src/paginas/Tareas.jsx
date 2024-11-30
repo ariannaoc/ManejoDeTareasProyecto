@@ -19,9 +19,9 @@ const TABS = [
 ];
 
 const TASK_TYPE = {
-    hacer: "bg-red-600",
-    "en progreso": "bg-yellow-400",
-    completado: "bg-green-600",
+    "Por Hacer": "bg-red-600",
+    "En Progreso": "bg-yellow-400",
+    Completado: "bg-green-600",
 };
 
 const Tareas = () => {

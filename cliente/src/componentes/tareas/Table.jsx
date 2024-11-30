@@ -9,6 +9,7 @@ import { BGS, PRIORITY_STYLES, TASK_TYPE, formatDate } from "../../utilidades";
 import UserInfo from "../UserInfo";
 import Button from "../button";
 import { TaskContext } from '../../contexts/TaskContext';
+import AgregarProyecto from '../tareas/AgregarProyecto'
 
 const ICONS = {
     alta: <FcHighPriority />,
@@ -18,12 +19,42 @@ const ICONS = {
 
 const Table = ({ task }) => {
     const [openDialog, setOpenDialog] = useState(false);
-    const [selected, setSelected] = useState(null);
-    const { tasks, setTasks } = useContext(TaskContext);
+    //const [selected, setSelected] = useState(null);
+    const { tasks, setTasks, apiHost } = useContext(TaskContext);
+    const [openEdit, setOpenEdit] = useState(false);
+    const [selectedTask, setSelectedTask] = useState(null);
+
+    const editHandler = async (taskId) => {
+        setOpenEdit(true);
+        console.log("editar " + taskId);
+
+        try {
+            const response = await fetch(`${apiHost}/api/Tareas/filter?IdTarea=${taskId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const tareas = await response.json(); 
+            console.log('Tareas:', tareas);
+
+            const tarea = Array.isArray(tareas) ? tareas[0] : tareas;
+            setSelectedTask(tarea);
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
 
     const deleteHandler = async (taskId) => {
         try {
-            const response = await fetch(`https://localhost:7009/api/Tareas/delete?IdTarea=${taskId}`, {
+            const response = await fetch(`${apiHost}/api/Tareas/delete?IdTarea=${taskId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +65,7 @@ const Table = ({ task }) => {
                 throw new Error('Network response was not ok');
             }
             console.log(taskId, ' Eliminado');
-            // Actualizacion del estado global de tareas
+            // Actualización del estado global de tareas
             setTasks(prevTasks => prevTasks.filter(task => task._id !== taskId));
         } catch (error) {
             console.error('Error:', error);
@@ -43,7 +74,7 @@ const Table = ({ task }) => {
 
     const TableHeader = () => (
         <thead className='w-full border-b border-gray-300'>
-            <tr className='w-full text-black  text-left'>
+            <tr className='w-full text-black text-left'>
                 <th className='py-2'>Tarea</th>
                 <th className='py-2'>Prioridad</th>
                 <th className='py-2 line-clamp-1'>Creado</th>
@@ -60,8 +91,7 @@ const Table = ({ task }) => {
             <tr className='border-b border-gray-200 text-gray-600 hover:bg-gray-300/10'>
                 <td className='py-2'>
                     <div className='flex items-center gap-2'>
-                        <div
-                            className={clsx("w-4 h-4 rounded-full", TASK_TYPE[task.stage])} />
+                        <div className={clsx("w-4 h-4 rounded-full", TASK_TYPE[task.stage])} />
                         <p className='w-full line-clamp-2 text-base text-black'>
                             {task?.title}
                         </p>
@@ -124,7 +154,10 @@ const Table = ({ task }) => {
                         label='Editar'
                         icon={<MdEdit className="inline" />}
                         type='button'
+                        onClick={() => editHandler(task._id)}
                     />
+
+
                     <Button
                         className='text-red-700 hover:text-red-500 sm:px-0 text-sm md:text-base'
                         label='Eliminar'
@@ -157,7 +190,13 @@ const Table = ({ task }) => {
 
     return (
         <>
-            <div className='bg-white  px-2 md:px-4 pt-4 pb-9 shadow-md rounded'>
+            <AgregarProyecto
+                open={openEdit}
+                setOpen={setOpenEdit}
+                task={selectedTask} 
+                key={new Date().getTime()}
+            />
+            <div className='bg-white px-2 md:px-4 pt-4 pb-9 shadow-md rounded'>
                 <div className='overflow-x-auto'>
                     <table className='w-full'>
                         <TableHeader />
