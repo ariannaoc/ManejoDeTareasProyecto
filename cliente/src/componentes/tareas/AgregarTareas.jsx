@@ -14,9 +14,35 @@ const AgregarTarea = ({ open, setOpen, id }) => {
         formState: { errors },
     } = useForm();
     const [tareaActual, setTareaActual] = useState(null);
-        //console.log(id)
 
-    useEffect(() => {
+    //useEffect(() => {
+    //    const fetchTarea = async () => {
+    //        if (id) {
+    //            try {
+    //                const response = await fetch(`${apiHost}/api/Tareas/filter?IdTarea=${id}`);
+    //                if (!response.ok) {
+    //                    throw new Error("Error al recuperar la tarea actual");
+    //                }
+    //                const data = await response.json();
+    //                setTareaActual(data);
+    //            } catch (error) {
+    //                console.error("Error al recuperar la tarea actual:", error);
+    //            }
+    //        }
+    //    };
+
+    //    fetchTarea();
+    //}, [id, apiHost, tareaActual]);
+
+    const handleOnSubmit = async (data) => {
+        const subTask = {
+            title: data.title,
+            date: data.date,
+            tag: data.tag,
+            _id: Date.now().toString(),
+        };
+
+
         const fetchTarea = async () => {
             if (id) {
                 try {
@@ -26,7 +52,6 @@ const AgregarTarea = ({ open, setOpen, id }) => {
                     }
                     const data = await response.json();
                     setTareaActual(data);
-                    //console.log(tareaActual[0].subTasks)
                 } catch (error) {
                     console.error("Error al recuperar la tarea actual:", error);
                 }
@@ -34,15 +59,8 @@ const AgregarTarea = ({ open, setOpen, id }) => {
         };
 
         fetchTarea();
-    }, [id, apiHost, tareaActual]);
 
-    const handleOnSubmit = async (data) => {
-        const subTask = {
-            title: data.title,
-            date: data.date,
-            tag: data.tag,
-            _id: Date.now().toString(),
-        };
+
 
         if (!tareaActual) {
             console.error("La tarea actual no está disponible");
@@ -58,11 +76,11 @@ const AgregarTarea = ({ open, setOpen, id }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ updatedSubTasks }),
+                body: JSON.stringify(updatedSubTasks),
             });
 
             if (!updateResponse.ok) {
-                console.log(JSON.stringify({ updatedSubTasks }));
+                //console.log(JSON.stringify(updatedSubTasks));
                 throw new Error("Error en la respuesta del servidor");
             }
 
