@@ -125,7 +125,7 @@ const ICONS = {
             </div>
     </div>
 
-    <AgregarTarea open = {open} setOpen = {setOpen} id = {task._id}/>
+        {task?._id && (<AgregarTarea open={open} setOpen={setOpen} id={task._id} />)}
 
     </>
     
