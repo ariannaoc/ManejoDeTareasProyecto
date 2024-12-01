@@ -100,7 +100,7 @@ function App() {
         <Route path='/log-in' element={<Login />} />
         <Route element={<Layout />}>
           <Route path='/' element={<Navigate to='/log-in' />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          {/*<Route path='/dashboard' element={<Dashboard />} />*/}
           <Route path='/tareas' element={<Tareas />} />
           <Route path='/completados/:status' element={<Tareas />} />
           <Route path='/en-progreso/:status' element={<Tareas />} />

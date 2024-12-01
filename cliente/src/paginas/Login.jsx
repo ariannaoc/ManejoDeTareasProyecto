@@ -34,7 +34,6 @@ const Login = () => {
             }
 
             const userData = await response.json();
-            //console.log(userData[0].password)
 
             // Autenticar contraseña
             if (userData[0].password != data.password) {
@@ -46,8 +45,7 @@ const Login = () => {
             // Guardar las credenciales en el estado global
             dispatch(setCredentials(userData));
 
-            // Abrir dashboard
-            navigate("/dashboard");
+            navigate("/tareas");
         } catch (error) {
             console.error('Error en el inicio de sesión:', error);
             alert('Inicio de sesión fallido: ' + error.message);
@@ -56,7 +54,7 @@ const Login = () => {
 
     useEffect(() => {
         if (user) {
-            navigate("/dashboard");
+            navigate("/tareas");
         }
     }, [user, navigate]);
 

@@ -13,11 +13,11 @@ import {
   import { setOpenSidebar } from "../redux/slices/authSlice";
   import clsx from "clsx";
 const linkData = [
-    {
-      label: "Dashboard",
-      link: "dashboard",
-      icon: <MdDashboard />,
-    },
+    //{
+    //  label: "Dashboard",
+    //  link: "dashboard",
+    //  icon: <MdDashboard />,
+    //},
     {
       label: "Proyectos",
       link: "Tareas",
@@ -43,11 +43,11 @@ const linkData = [
       link: "equipos",
       icon: <FaUsers />,
     },
-    {
-      label: "Eliminados",
-      link: "eliminados",
-      icon: <FaTrashAlt />,
-    },
+    //{
+    //  label: "Eliminados",
+    //  link: "eliminados",
+    //  icon: <FaTrashAlt />,
+    //},
   ];
 const Sidebar = () => {
     

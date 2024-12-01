@@ -15,25 +15,6 @@ const AgregarTarea = ({ open, setOpen, id }) => {
     } = useForm();
     const [tareaActual, setTareaActual] = useState(null);
 
-    //useEffect(() => {
-    //    const fetchTarea = async () => {
-    //        if (id) {
-    //            try {
-    //                const response = await fetch(`${apiHost}/api/Tareas/filter?IdTarea=${id}`);
-    //                if (!response.ok) {
-    //                    throw new Error("Error al recuperar la tarea actual");
-    //                }
-    //                const data = await response.json();
-    //                setTareaActual(data);
-    //            } catch (error) {
-    //                console.error("Error al recuperar la tarea actual:", error);
-    //            }
-    //        }
-    //    };
-
-    //    fetchTarea();
-    //}, [id, apiHost, tareaActual]);
-
     const handleOnSubmit = async (data) => {
         const subTask = {
             title: data.title,
