@@ -22,7 +22,6 @@ const ListaUsuarios = ({ setTeam, team }) => {
 
         setSelectedUsers(updatedSelection);
         setTeam(updatedSelection);
-        console.log('Usuarios seleccionados:', updatedSelection);
     };
 
     useEffect(() => {
@@ -40,7 +39,6 @@ const ListaUsuarios = ({ setTeam, team }) => {
                 }
 
                 const data = await response.json();
-                console.log('Usuarios obtenidos:', data);
                 setUsers(data);
             } catch (error) {
                 console.error('Error fetching users:', error);

@@ -46,7 +46,6 @@ const AgregarTarea = ({ open, setOpen, id }) => {
             setTareaActual(tareaData);
 
             const updatedSubTasks = Array.isArray(tareaData[0].subTasks) ? [...tareaData[0].subTasks, subTask] : [subTask];
-            console.log(updatedSubTasks);
 
             const updateTarea = async () => {
                 try {

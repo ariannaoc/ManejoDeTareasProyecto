@@ -31,7 +31,6 @@ const ICONS = {
 
   const FichaTablero = ({task}) => {
     
-    //const {user} = useSelector ((state) => state.auth);
     const [open, setOpen] = useState (false);
 
     return <>
@@ -100,7 +99,6 @@ const ICONS = {
         </div>
         </div>
 
-        {/*subtareas en data.js*/}
         {task?.subTasks?.length > 0 ? (<div className="py-4 border-t border-gray-200">
                 <h5>{task?.subTasks[0].title}</h5>
                 <div className="p-4 space-x-8">

@@ -16,7 +16,6 @@ const PRIORIRY = ["Alta", "Media", "Baja"];
 const uploadedFileURLs = [];
 
 const AgregarProyecto = ({ open, setOpen, task }) => {
-    //console.log("Tarea:", task);
 
     const {
         register,
@@ -101,61 +100,6 @@ const AgregarProyecto = ({ open, setOpen, task }) => {
             console.error('Error:', error);
         }
     };
-
-
-
-
-
-    //const submitHandler = async (data) => {
-    //    // Verifica y asigna títulos por defecto si es necesario
-    //    const validTeam = team.map(user => ({
-    //        ...user,
-    //        title: user.title || 'Sin Título' // Asigna un valor por defecto si el título está ausente
-    //    }));
-
-    //    const newProject = {
-    //        _id: Date.now().toString(),
-    //        title: data.title,
-    //        date: data.date,
-    //        priority: priority,
-    //        stage: stage,
-    //        assets: assets,
-    //        team: validTeam,
-    //        isTrashed: false,
-    //        activities: [],
-    //        subTasks: [],
-    //        createdAt: new Date().toISOString(),
-    //        updatedAt: new Date().toISOString(),
-    //    };
-
-    //    //*console.log('Datos del proyecto:', newProject); 
-    //    if (action == "agregar") {
-    //        try {
-    //            const response = await fetch(`${apiHost}/api/Tareas`, {
-    //                method: 'POST',
-    //                headers: {
-    //                    'Content-Type': 'application/json',
-    //                },
-    //                body: JSON.stringify(newProject)
-    //            });
-
-    //            if (!response.ok) {
-    //                const errorText = await response.text();
-    //                throw new Error(`Network response was not ok: ${errorText}`);
-    //            }
-
-    //            const responseData = await response.text();
-    //            const jsonData = responseData ? JSON.parse(responseData) : {};
-
-    //            console.log('Proyecto agregado:', jsonData);
-    //            setTasks(prevTasks => [...prevTasks, newProject]);
-    //            setOpen(false);
-    //        } catch (error) {
-    //            console.error('Error:', error);
-    //        }
-    //    }
-        
-    //};
 
     const handleSelect = (e) => {
         const files = Array.from(e.target.files);

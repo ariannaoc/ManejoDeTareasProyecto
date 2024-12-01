@@ -37,7 +37,6 @@ const Login = () => {
 
             // Autenticar contraseña
             if (userData[0].password != data.password) {
-                console.log(userData[0].password, data.password)
                 throw new Error('Contraseña incorrecta');
             }
             delete userData.password;
