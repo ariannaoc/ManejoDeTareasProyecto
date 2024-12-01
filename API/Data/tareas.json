@@ -1,0 +1,172 @@
+[
+  {
+    "_id": "65c5f12ab5204a81bde866a9",
+    "Title": "Desarrollo de Nueva Funcionalidad",
+    "Date": "2024-02-09T00:00:00",
+    "Priority": "Media",
+    "Stage": "COMPLETADO",
+    "Assets": [
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    ],
+    "Team": [
+      {
+        "_id": "662f32ffd1303cc",
+        "Name": "Juan Pérez",
+        "Title": "Administrador",
+        "Email": "juan.perez@ejemplo.com"
+      },
+      {
+        "_id": "65c30b96e639681a13def0b5",
+        "Name": "Jane Smith",
+        "Title": "Product Manager",
+        "Email": "jane.smith@example.com"
+      }
+    ],
+    "IsTrashed": false,
+    "Activities": [],
+    "SubTasks": [
+      {
+        "Title": "Grabar segundo",
+        "Date": "2024-12-01T03:25:37.086Z",
+        "Tag": "string",
+        "_id": "string2"
+      }
+    ],
+    "CreatedAt": "2024-02-09T09:32:26.574Z",
+    "UpdatedAt": "2024-11-30T23:27:09.1108616-04:00",
+    "__v": 0
+  },
+  {
+    "_id": "1733005362946",
+    "Title": "Planificación de Proyecto",
+    "Date": "2024-11-08T00:00:00",
+    "Priority": "Media",
+    "Stage": "En Progreso",
+    "Assets": [
+      "https://example.com/image7.jpg",
+      "https://example.com/image8.jpg"
+    ],
+    "Team": [
+      {
+        "_id": "662f32ffd1303cf",
+        "Name": "Ana Torres",
+        "Title": "Diseñadora UX/UI",
+        "Email": "ana.torres@ejemplo.com"
+      },
+      {
+        "_id": "662f32ffd1303cc",
+        "Name": "Juan Pérez",
+        "Title": "Administrador",
+        "Email": "juan.perez@ejemplo.com"
+      }
+    ],
+    "IsTrashed": false,
+    "Activities": [],
+    "SubTasks": [
+      {
+        "Title": "Reunion con el equipo",
+        "Date": "2024-12-12T00:00:00",
+        "Tag": "documentacion",
+        "_id": "1733033012782"
+      },
+      {
+        "Title": "Reunion con el equipo",
+        "Date": "2024-12-12T00:00:00",
+        "Tag": "documentacion",
+        "_id": "1733033018093"
+      },
+      {
+        "Title": "Determinacion de Requerimientos",
+        "Date": "2024-12-13T00:00:00",
+        "Tag": "documentacion",
+        "_id": "1733033071005"
+      }
+    ],
+    "CreatedAt": "2024-11-30T22:22:42.946Z",
+    "UpdatedAt": "2024-12-01T06:19:40.239Z",
+    "__v": 0
+  },
+  {
+    "_id": "1733032894461",
+    "Title": "Desarrollo de Sistema de Facturacion",
+    "Date": "2024-11-01T00:00:00",
+    "Priority": "Alta",
+    "Stage": "Completado",
+    "Assets": [],
+    "Team": [
+      {
+        "_id": "1115866624aa",
+        "Name": "Arianna Olivares",
+        "Title": "Sin T�tulo",
+        "Email": "aoc@ula.com"
+      }
+    ],
+    "IsTrashed": false,
+    "Activities": [],
+    "SubTasks": [
+      {
+        "Title": "Desarrollo de Interfaz",
+        "Date": "2024-11-01T00:00:00",
+        "Tag": "desarrollo",
+        "_id": "1733033116382"
+      },
+      {
+        "Title": "Diseño de la interfaz",
+        "Date": "2024-10-23T00:00:00",
+        "Tag": "diseño",
+        "_id": "1733033559064"
+      },
+      {
+        "Title": "Estructuracion de datos",
+        "Date": "2024-11-06T00:00:00",
+        "Tag": "data",
+        "_id": "1733033836006"
+      },
+      {
+        "Title": "DEsarrollo de Backend",
+        "Date": "2024-12-05T00:00:00",
+        "Tag": "desarrollo",
+        "_id": "1733033905605"
+      }
+    ],
+    "CreatedAt": "2024-12-01T06:01:34.461Z",
+    "UpdatedAt": "2024-12-01T02:18:25.6406566-04:00",
+    "__v": 0
+  },
+  {
+    "_id": "1733032926388",
+    "Title": "Grabar Presentacion",
+    "Date": "2024-11-29T00:00:00",
+    "Priority": "Media",
+    "Stage": "En Progreso",
+    "Assets": [],
+    "Team": [
+      {
+        "_id": "1115866624aa",
+        "Name": "Arianna Olivares",
+        "Title": "Sin T�tulo",
+        "Email": "aoc@ula.com"
+      },
+      {
+        "_id": "662f32ffd1303cc",
+        "Name": "Juan Pérez",
+        "Title": "Sin T�tulo",
+        "Email": "juan.perez@ejemplo.com"
+      }
+    ],
+    "IsTrashed": false,
+    "Activities": [],
+    "SubTasks": [
+      {
+        "Title": "Preparar la Camara",
+        "Date": "2024-11-29T00:00:00",
+        "Tag": "media",
+        "_id": "1733033964238"
+      }
+    ],
+    "CreatedAt": "2024-12-01T06:02:06.388Z",
+    "UpdatedAt": "2024-12-01T02:19:24.2671432-04:00",
+    "__v": 0
+  }
+]

@@ -1,0 +1,79 @@
+@API_HostAddress = http://localhost:3000
+
+# Get usuarios from usuarios.json
+GET {{API_HostAddress}}/api/usuarios
+Accept: application/json
+
+### 
+# Filtrar usuarios
+GET {{API_HostAddress}}/api/usuarios/filter?username={{user}}
+Accept: application/json
+
+###
+# Agregar usuario
+POST {{API_HostAddress}}/api/usuarios
+Content-Type: application/json
+Accept: application/json
+
+###
+# Editar usuario
+PUT {{API_HostAddress}}/api/usuarios/edit?userId={{userId}}
+Content-Type: application/json
+Accept: application/json
+
+### 
+# Get tareas from tareas.json
+GET {{API_HostAddress}}/api/tareas
+Accept: application/json
+
+### 
+# Filtrar tareas
+GET {{API_HostAddress}}/api/tareas/filter?IdTarea={{IdTarea}}
+Accept: application/json
+
+###
+# Agregar tarea
+POST {{API_HostAddress}}/api/tareas
+Content-Type: application/json
+Accept: application/json
+
+###
+# Editar tarea
+PUT {{API_HostAddress}}/api/tareas/edit?IdTarea={{IdTarea}}
+Content-Type: application/json
+Accept: application/json
+
+###
+# Eliminar tarea
+PUT {{API_HostAddress}}/api/tareas/delete?IdTarea={{IdTarea}}
+Content-Type: application/json
+Accept: application/json
+
+
+### 
+# Get proyectos from proyectos.json
+GET {{API_HostAddress}}/api/proyectos
+Accept: application/json
+
+### 
+# Filtrar proyecto
+GET {{API_HostAddress}}/api/proyectos/filter?Id={{Id}}
+Accept: application/json
+
+###
+# Agregar proyecto
+POST {{API_HostAddress}}/api/proyectos
+Content-Type: application/json
+Accept: application/json
+
+###
+# Editar proyecto
+PUT {{API_HostAddress}}/api/proyectos/edit?Id={{Id}}
+Content-Type: application/json
+Accept: application/json
+
+###
+# Eliminar proyecto
+PUT {{API_HostAddress}}/api/proyectos/delete?Id={{Id}}
+Content-Type: application/json
+Accept: application/json

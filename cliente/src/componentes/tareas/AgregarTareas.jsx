@@ -7,7 +7,7 @@ import TextBox from "../TextBox";
 import Button from "../button";
 
 const AgregarTarea = ({ open, setOpen, id }) => {
-    const { apiHost } = useContext(TaskContext);
+    const { apiHost, setTasks } = useContext(TaskContext);
     const {
         register,
         handleSubmit,
@@ -63,6 +63,19 @@ const AgregarTarea = ({ open, setOpen, id }) => {
 
                     const result = await updateResponse.json();
                     console.log("Subtarea añadida:", result);
+
+                    // Leer las tareas actualizadas y actualizar el estado global 
+                    fetch(`${apiHost}/api/Tareas`)
+                        .then(response => response.json())
+                        .then(data =>
+                    {
+                        setTasks(data); setOpen(false);
+                    })
+                        .catch(error =>
+                        {
+                            console.error("Error al actualizar las tareas:", error);
+                        });
+
                     setOpen(false);
                 } catch (error) {
                     console.error("Error al añadir la subtarea:", error);

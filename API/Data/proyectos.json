@@ -1,0 +1,117 @@
+[
+  {
+    "Id": "p00",
+    "Titulo": "Desarrollo de Aplicación Web",
+    "EquipoDeTrabajo": [
+      1,
+      2
+    ],
+    "Objetivos": "Crear una aplicación web responsiva y funcional.",
+    "Tareas": [
+      "t00",
+      "t01"
+    ]
+  },
+  {
+    "Id": "p01",
+    "Titulo": "Base de Datos para Aplicación",
+    "EquipoDeTrabajo": [
+      2
+    ],
+    "Objetivos": "Configurar y optimizar la base de datos para el rendimiento.",
+    "Tareas": [
+      "t02",
+      "t03"
+    ]
+  },
+  {
+    "Id": "p02",
+    "Titulo": "Pruebas del Sistema",
+    "EquipoDeTrabajo": [
+      3
+    ],
+    "Objetivos": "Asegurar que el sistema funcione correctamente mediante pruebas exhaustivas.",
+    "Tareas": [
+      "t04",
+      "t05"
+    ]
+  },
+  {
+    "Id": "p03",
+    "Titulo": "Implementación de API",
+    "EquipoDeTrabajo": [
+      1
+    ],
+    "Objetivos": "Crear una API REST robusta para manejar las operaciones CRUD.",
+    "Tareas": [
+      "t06"
+    ]
+  },
+  {
+    "Id": "p04",
+    "Titulo": "Revisión del Código",
+    "EquipoDeTrabajo": [
+      2
+    ],
+    "Objetivos": "Asegurar la calidad del código a través de revisiones.",
+    "Tareas": [
+      "t07"
+    ]
+  },
+  {
+    "Id": "p05",
+    "Titulo": "Documentación del Proyecto",
+    "EquipoDeTrabajo": [
+      3
+    ],
+    "Objetivos": "Mantener actualizada la documentación del proyecto.",
+    "Tareas": [
+      "t08"
+    ]
+  },
+  {
+    "Id": "p06",
+    "Titulo": "Pruebas de Integración",
+    "EquipoDeTrabajo": [
+      1,
+      3
+    ],
+    "Objetivos": "Verificar que todos los componentes funcionen juntos.",
+    "Tareas": [
+      "t09"
+    ]
+  },
+  {
+    "Id": "p07",
+    "Titulo": "Despliegue en Producción",
+    "EquipoDeTrabajo": [
+      2
+    ],
+    "Objetivos": "Llevar la aplicación a un entorno de producción.",
+    "Tareas": [
+      "t10"
+    ]
+  },
+  {
+    "Id": "p08",
+    "Titulo": "Recopilación de Feedback",
+    "EquipoDeTrabajo": [
+      3
+    ],
+    "Objetivos": "Obtener retroalimentación de los usuarios sobre la aplicación.",
+    "Tareas": [
+      "t11"
+    ]
+  },
+  {
+    "Id": "p09",
+    "Titulo": "Planificación de la Siguiente Fase",
+    "EquipoDeTrabajo": [
+      1
+    ],
+    "Objetivos": "Definir los objetivos y tareas para la próxima fase del desarrollo.",
+    "Tareas": [
+      "t12"
+    ]
+  }
+]
