@@ -42,7 +42,6 @@ const AgregarTarea = ({ open, setOpen, id }) => {
             _id: Date.now().toString(),
         };
 
-
         const fetchTarea = async () => {
             if (id) {
                 try {
@@ -50,46 +49,50 @@ const AgregarTarea = ({ open, setOpen, id }) => {
                     if (!response.ok) {
                         throw new Error("Error al recuperar la tarea actual");
                     }
-                    const data = await response.json();
-                    setTareaActual(data);
+                    return response.json();
                 } catch (error) {
                     console.error("Error al recuperar la tarea actual:", error);
                 }
             }
         };
 
-        fetchTarea();
-
-
-
-        if (!tareaActual) {
-            console.error("La tarea actual no está disponible");
-            return;
-        }
-
-        const updatedSubTasks = Array.isArray(tareaActual[0].subTasks) ? [...tareaActual[0].subTasks, subTask] : [subTask];
-        console.log(updatedSubTasks);
-
-        try {
-            const updateResponse = await fetch(`${apiHost}/api/Tareas/editSubtask?id=${tareaActual[0]._id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updatedSubTasks),
-            });
-
-            if (!updateResponse.ok) {
-                //console.log(JSON.stringify(updatedSubTasks));
-                throw new Error("Error en la respuesta del servidor");
+        fetchTarea().then(tareaData => {
+            if (!tareaData) {
+                console.error("La tarea actual no está disponible");
+                return;
             }
 
-            const result = await updateResponse.json();
-            console.log("Subtarea añadida:", result);
-        } catch (error) {
-            console.error("Error al añadir la subtarea:", error);
-        }
+            setTareaActual(tareaData);
+
+            const updatedSubTasks = Array.isArray(tareaData[0].subTasks) ? [...tareaData[0].subTasks, subTask] : [subTask];
+            console.log(updatedSubTasks);
+
+            const updateTarea = async () => {
+                try {
+                    const updateResponse = await fetch(`${apiHost}/api/Tareas/editSubtask?id=${tareaData[0]._id}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(updatedSubTasks),
+                    });
+
+                    if (!updateResponse.ok) {
+                        throw new Error("Error en la respuesta del servidor");
+                    }
+
+                    const result = await updateResponse.json();
+                    console.log("Subtarea añadida:", result);
+                    setOpen(false);
+                } catch (error) {
+                    console.error("Error al añadir la subtarea:", error);
+                }
+            };
+
+            updateTarea();
+        });
     };
+
     return (
         <>
             <ModalWrapper open={open} setOpen={setOpen}>
